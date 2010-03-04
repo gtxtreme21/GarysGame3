@@ -1,8 +1,10 @@
 package com.garysgame3.client;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.adamtacy.client.ui.NEffectPanel;
 import org.adamtacy.client.ui.effects.impl.Fade;
-import org.adamtacy.client.ui.effects.impl.Puff;
 import org.adamtacy.client.ui.effects.impl.Resize;
 import org.adamtacy.client.ui.effects.impl.SlideRight;
 import org.adamtacy.client.ui.effects.transitionsphysics.EaseInOutTransitionPhysics;
@@ -32,10 +34,14 @@ public class GarysGame3 implements EntryPoint {
 	private final Button closeButton = new Button("Close");
 	private final Button sendButton = new Button("Send");
 	private final Button fxButton = new Button("FXtest");
-	private final TextBox nameField = new TextBox();
+	private final TextBox lastNameField = new TextBox();
+	private final TextBox firstNameField = new TextBox();
 	private final Label textToServerLabel = new Label();
 	private final HTML serverResponseLabel = new HTML();
 	private final DialogBox dialogBox = new DialogBox();
+	private List<Image> imageList = buildImageList();
+	private NEffectPanel thePanel = createNEffectPanel(imageList.get(0));
+	private int currentImageIndex = 0;
 	/**
 	 * The message displayed to the user when the server cannot be reached or
 	 * returns an error.
@@ -56,12 +62,15 @@ public class GarysGame3 implements EntryPoint {
 	public void onModuleLoad() {
 		final Image stickFigure = new Image("images/stickFigureOpaque.png");
 		final Image sunset = new Image("images/Sunset.jpg");
-		final Image twitterPic = new Image("images/twitterPic.jpg");
-		final Image faaBday = new Image("images/FAA_B-Day.jpg");
-//		nameField.setText("GWT User");
+//		final Image twitterPic = new Image("images/twitterPic.jpg");
+//		final Image faaBday = new Image("images/FAA_B-Day.jpg");
+		lastNameField.setText("Your Last Name");
+		lastNameField.setTitle("Last Name");
+		firstNameField.setText("Your First Name");
+		firstNameField.setTitle("First Name");
 
 		// We can add style names to widgets
-//		sendButton.addStyleName("sendButton");
+		sendButton.addStyleName("sendButton");
 		fxButton.addStyleName("fxButton");
 		
 		// Set the background of the RootPanel
@@ -70,25 +79,26 @@ public class GarysGame3 implements EntryPoint {
         
 		// Add the nameField and sendButton to the RootPanel
 		// Use RootPanel.get() to get the entire body element
-		RootPanel.get("nameFieldContainer").add(nameField);
-//		RootPanel.get("sendButtonContainer").add(sendButton);
+		RootPanel.get("nameFieldContainer").add(lastNameField);
+		RootPanel.get("nameFieldContainer").add(firstNameField);
+		RootPanel.get("sendButtonContainer").add(sendButton);
 		RootPanel.get("fxButtonContainer").add(fxButton);
 		RootPanel.get("stickFigureContainer").add(stickFigure);
 
 		// Focus the cursor on the name field when the app loads
-//		nameField.setFocus(true);
-//		nameField.selectAll();
+		lastNameField.setFocus(true);
+		lastNameField.selectAll();
 		
 		// Focus the cursor on the fxButton when the app loads
 		fxButton.setFocus(true);
 		
 		// Create the popup dialog box
-//		createPopupDialogBox();
+		createPopupDialogBox();
 		// Create the fx popup dialog box
 //		final DialogBox fxDialogBox = new DialogBox();
 //		createFxPopupDialogBox(fxDialogBox);
 //		NEffectPanel thePanel = createNEffectPanel();
-		final NEffectPanel thePanel = createNEffectPanel(twitterPic);
+//		final NEffectPanel thePanel = createNEffectPanel(imageList.get(0));
 		RootPanel.get("nEffectPanelContainer").add(thePanel);
 //		thePanel.playEffects(2, 250, 1);
 		thePanel.playEffects();
@@ -97,7 +107,7 @@ public class GarysGame3 implements EntryPoint {
 		// Add a handler to replace the picture and rerun the animation
 		fxButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				replaceImageRerunAnimation(faaBday, thePanel);
+				replaceImageRerunAnimation();
 			}
 		});
 		
@@ -105,17 +115,38 @@ public class GarysGame3 implements EntryPoint {
 //		thePanel.addEffect(theEffect)
 		
 		// Add a handler to send the name to the server
-//		MyHandler handler = new MyHandler();
-//		sendButton.addClickHandler(handler);
-//		nameField.addKeyUpHandler(handler);
+		MyHandler handler = new MyHandler();
+		sendButton.addClickHandler(handler);
+		lastNameField.addKeyUpHandler(handler);
+		firstNameField.addKeyUpHandler(handler);
 	}
 
-	private void replaceImageRerunAnimation(final Image faaBday,
-			NEffectPanel thePanel) {
+	private List<Image> buildImageList() {
+		imageList = new ArrayList<Image>();
+		imageList.add(new Image("images/twitterPic.jpg"));
+		imageList.add(new Image("images/FAA_B-Day.jpg"));
+		return imageList;
+	}
+
+	private void replaceImageRerunAnimation() {
+//		Image currentImage = thePanel.get(twitterPic);
+//		garysImageWidget will need to override hashcode & equals for id field.
 		RootPanel.get("nEffectPanelContainer").remove(thePanel);
-		thePanel = createNEffectPanel(faaBday);
+		thePanel = createNEffectPanel(getNextImage());
 		RootPanel.get("nEffectPanelContainer").add(thePanel);
 		thePanel.playEffects();
+	}
+
+	private Image getNextImage() {
+		Image image = null;
+		for (int i=0; i < imageList.size(); i++) {
+			if (i != currentImageIndex) {
+				image = imageList.get(i);
+				currentImageIndex = i;
+				break;
+			}
+		}
+		return image;
 	}
 
 	private NEffectPanel createNEffectPanel(Image image) {
@@ -235,7 +266,7 @@ public class GarysGame3 implements EntryPoint {
 		//Label textToServerLabel, final HTML serverResponseLabel, final DialogBox dialogBox
 		private void sendNameToServer() {
 			sendButton.setEnabled(false);
-			String textToServer = nameField.getText();
+			String textToServer = firstNameField.getText() + " " + lastNameField.getText();
 			textToServerLabel.setText(textToServer);
 			serverResponseLabel.setText("");
 			greetingService.greetServer(textToServer,
