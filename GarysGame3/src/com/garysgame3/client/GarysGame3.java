@@ -17,6 +17,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
+import com.google.gwt.user.client.Random;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
@@ -26,6 +27,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.garysgame3.client.RandomNumberGenerator;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
@@ -42,6 +44,7 @@ public class GarysGame3 implements EntryPoint {
 	private List<Image> imageList = buildImageList();
 	private NEffectPanel thePanel = createNEffectPanel(imageList.get(0));
 	private int currentImageIndex = 0;
+	private RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
 	/**
 	 * The message displayed to the user when the server cannot be reached or
 	 * returns an error.
@@ -62,8 +65,6 @@ public class GarysGame3 implements EntryPoint {
 	public void onModuleLoad() {
 		final Image stickFigure = new Image("images/stickFigureOpaque.png");
 		final Image sunset = new Image("images/Sunset.jpg");
-//		final Image twitterPic = new Image("images/twitterPic.jpg");
-//		final Image faaBday = new Image("images/FAA_B-Day.jpg");
 		lastNameField.setText("Your Last Name");
 		lastNameField.setTitle("Last Name");
 		firstNameField.setText("Your First Name");
@@ -125,6 +126,8 @@ public class GarysGame3 implements EntryPoint {
 		imageList = new ArrayList<Image>();
 		imageList.add(new Image("images/twitterPic.jpg"));
 		imageList.add(new Image("images/FAA_B-Day.jpg"));
+		imageList.add(new Image("images/dilbertHead.png"));
+		imageList.add(new Image("images/hankHillHead.png"));
 		return imageList;
 	}
 
@@ -139,13 +142,17 @@ public class GarysGame3 implements EntryPoint {
 
 	private Image getNextImage() {
 		Image image = null;
-		for (int i=0; i < imageList.size(); i++) {
-			if (i != currentImageIndex) {
-				image = imageList.get(i);
-				currentImageIndex = i;
+		int random = 0;
+		boolean newImageFound = false;
+		while (newImageFound == false) {
+			random = randomNumberGenerator.getRandomInteger(0, imageList.size()-1);
+			if (random != currentImageIndex) {
+				newImageFound = true;
+				currentImageIndex = random;
 				break;
 			}
 		}
+		image = imageList.get(random);
 		return image;
 	}
 
