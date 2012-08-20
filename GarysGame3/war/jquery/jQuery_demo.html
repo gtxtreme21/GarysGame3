@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>jQuery UI Test</title>
+
+<!-- <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/themes/base/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/themes/start/jquery-ui.css" /> -->
+<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/themes/redmond/jquery-ui.css" />
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+<script type="text/javascript" src="jquery_local.js"></script>
+
+</head>
+
+<body>
+
+<div id="msgid"></div>
+<div id="msgid2"></div>
+<div id="jquerythemes"><a href="jquerythemes.html">jQuery Themes</a></div>
+<div id="slickgrid1"><a href="SlickGridExample1.html">Slick Grid Example 1</a></div>
+<div id="jqgrid"><a href="jqgrid/jqgridExample.html">jqGrid Grid Example 1</a></div>
+
+	<!-- Tabs -->
+	<div class="demo">
+		<h4><i> Tabs </i></h4> 
+		<div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs">
+			<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+				<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tabs-1">Tab 1</a></li>
+				<li class="ui-state-default ui-corner-top"><a href="#tabs-2">Tab 2</a></li>
+				<li class="ui-state-default ui-corner-top"><a href="#tabs-3">Tab 3</a></li>
+			</ul>
+			<div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tabs-1">
+				Content of Tab 1
+			</div>
+			<div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tabs-2">
+				Content of Tab 2
+			</div>
+			<div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tabs-3">
+				Content of Tab 3
+			</div>
+		</div>
+	</div>
+<hr>
+	<!-- Datepicker -->
+		<h4><i> Datepicker </i></h4>
+		<table> 
+		<tr>
+			<td>
+				<label>Date</label>
+				<input id="date_field"/>
+			</td>
+		</tr>
+	
+		<tr>
+			<td>
+			<br>
+			<h4><i> Dropdown Menu </i></h4>  
+				<select id="country">
+		   		<option value="None">-- Select --</option>
+		   		<option value="China">China</option>
+		   		<option value="United States">United States</option>
+		  		<option value="Malaysia">Malaysia</option>
+				</select>
+			</td>
+			<td>
+				<input type='button' value='Display Selected' id='isSelect'>
+				<input type='button' value='Select US' id='selectUS'>
+				<input type='button' value='Disable US' id='disableUS'>
+				<input type='button' value='Enable US' id='enableUS'>
+			</td>
+		</tr>
+		
+		<!-- Checkbox -->
+		<tr>
+		<td>
+		<br>
+		<h4> <i>Checkbox </i></h4></td>
+		</tr>
+		<tr>
+			<td>
+				<label>Male</label>
+			</td>
+			<td>
+				<input type="checkbox" Value="Male" id="male_box"/>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>Female</label>
+			</td>
+			<td>
+				<input type="checkbox" value="Female" id="female_box">
+			</td>
+		</tr>
+		
+		<!-- Button -->
+		<tr>  
+			<td>
+			<br>   
+			<h4> <i>Button </i></h4>
+			  	<input class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" type="submit" value="Submit"  id="button">
+			</td>
+		</tr>
+		<!-- Radio Button -->
+		<tr>
+		<td>
+		<br>
+		<h4> <i>Radio Button </i></h4>
+		<form style="margin-top: 1em;">
+
+			<div id="radioset">
+
+				<input type="radio" id="radio1" name="radio" /><label for="radio1">Choice 1</label>
+
+				<input type="radio" id="radio2" name="radio" checked="checked" /><label for="radio2">Choice 2</label>
+
+				<input type="radio" id="radio3" name="radio" /><label for="radio3">Choice 3</label>
+
+			</div>
+
+		</form>
+		</td>
+		</tr>
+		
+		</table>
+	<hr>
+		<!-- Accordian -->
+		<h4> <i>Accordian </i></h4>  
+		<div  class="ui-accordion ui-widget ui-helper-reset" id="accordion">
+			<div>
+			<h3 class="ui-accordion-header ui-helper-reset ui-state-active ui-corner-top" >
+			<a href="#">Section 1</a></h3>
+				<div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active">
+				I am section one.
+				</div>
+			</div>
+			<div>
+			<h3  class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all">
+	   		<a href="#">Section 2</a></h3>
+				<div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active">
+				I am section two.
+				</div>
+			</div>
+			<div>
+			<h3  class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all">
+	 		<a href="#">Section 3</a></h3>
+				<div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active">
+				I am section three.
+				<ul>
+				<li>List item one</li>
+				<li>List item two</li>
+				<li>List item three</li>
+				</ul>
+				</div>
+			</div>
+			<div>
+			<h3  class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all">
+			<a href="#">Section 4</a>
+			</h3>
+				<div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active">
+				<p>I am section 4 - paragraph 1.</p>
+				<p>I am section 4 - paragraph 2.</p>
+				</div>
+			</div>
+		</div>	
+	<hr>
+	<!-- Autocomplete -->
+	<h4><i>Autocomplete</i> </h4>
+		<div class="ui-widget">
+		<label>Autocomplete </label>
+		<input id="tags">
+		</div>
+	<hr>
+	<!-- Dialog -->
+	<h4><i> Dialog </i></h4>
+	<p><a href="#" id="dialog_link" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-newwin"></span>Open Dialog</a></p>
+		<div id="dialog" title="Dialog Title">
+			I am a dialog box u can drag me
+		</div>
+	<hr>
+	<!-- Ajax Demo -->
+		<h4><i> Ajax Demo</i> </h4>
+			<button id="ajax_button">Click for AJAX demo</button>
+			<div id="ajax_div" style="background-color:grey;"></div>
+			<br>
+			<button id="json_button">Load JSON data via AJAX</button>
+			<div id="json_div" style="background-color:grey;"></div>
+	<hr>
+	<h4><i> Gary's Custom jQuery to automatically set cursor - Demo</i> </h4>
+		<div class="ui-corner-all">
+		<p>Click in a input field and click tab to see it in action</p>
+			<ul class="ui-widget-header ui-corner-all">
+				<li class="ui-corner-top"><input type="text" id="tabtest" value="click then tab"/></li>
+				<li class="ui-corner-top"><input type="text" id="tabtest" value="click then tab"/></li>
+				<li class="ui-corner-top"><input type="text" id="tabtest" value="click then tab"/></li>
+				<li class="ui-corner-top"><input type="text" id="tabtest" value="R" class="prefix"/></li>
+				<li class="ui-corner-top"><input type="text" id="tabtest" value="39-" class="prefix"/></li>
+			</ul>
+		</div>
+
+	
+	<!-- <button onclick="alert('auto cursor test');">button</button> -->
+	<input type="text" id="tabtest" value="click then tab"/>	
+	<input type="text" id="tabtest1" value="click then tab"/>
+	<input type="text" id="revision" class="prefix" value="R" />
+	<input type="text" id="amendmentNbr" class="prefix" value="39-" />	
+	
+	<hr>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <link rel="stylesheet" href="slickgrid/slick.grid.css" type="text/css"/>
+  <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/themes/redmond/jquery-ui.css" />
+  <link rel="stylesheet" href="slickgrid/examples.css" type="text/css"/>
+  <style>
+    .slick-cell-checkboxsel {
+      background: #f0f0f0;
+      border-right-color: silver;
+      border-right-style: solid;
+    }
+  </style>
+</head>
+<body>
+<div style="position:relative">
+  <div style="width:600px;">
+    <div id="myGrid" style="width:100%;height:500px;"></div>
+  </div>
+
+  <div class="options-panel">
+    <h2>Demonstrates:</h2>
+    <ul>
+      <li>Checkbox row select column</li>
+    </ul>
+  </div>
+</div>
+<hr>
+	<!-- Accordian -->
+	<h4> <i>Accordian </i></h4>  
+	<div  class="ui-accordion ui-widget ui-helper-reset" id="accordion">
+		<div>
+		<h3 class="ui-accordion-header ui-helper-reset ui-state-active ui-corner-top" >
+		<a href="#">Section 1</a></h3>
+			<div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active">
+			Repeat of above grid
+			<div id="myGrid" style="width:100%;height:500px;"></div>			
+			</div>
+		</div>
+		<div>
+		<h3  class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all">
+   		<a href="#">Section 2</a></h3>
+			<div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active">
+			I am section two.
+			</div>
+		</div>		
+	</div>	
+<hr>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+<script type="text/javascript" src="slickgrid/jquery.event.drag-2.0.min.js"></script>
+<script type="text/javascript" src="jquery_local.js"></script>
+
+<script src="slickgrid/firebugx.js"></script>
+
+<script src="slickgrid/slick.core.js"></script>
+<script src="slickgrid/slick.checkboxselectcolumn.js"></script>
+<script src="slickgrid/slick.autotooltips.js"></script>
+<script src="slickgrid/slick.cellrangedecorator.js"></script>
+<script src="slickgrid/slick.cellrangeselector.js"></script>
+<script src="slickgrid/slick.cellcopymanager.js"></script>
+<script src="slickgrid/slick.cellselectionmodel.js"></script>
+<script src="slickgrid/slick.rowselectionmodel.js"></script>
+<script src="slickgrid/slick.formatters.js"></script>
+<script src="slickgrid/slick.editors.js"></script>
+<script src="slickgrid/slick.grid.js"></script>
+
+<script>
+  var grid;
+  var data = [];
+  var options = {
+    editable: true,
+    enableCellNavigation: true,
+    asyncEditorLoading: false,
+    autoEdit: false
+  };
+  var columns = [];
+
+  $(function () {
+    for (var i = 0; i < 100; i++) {
+      var d = (data[i] = {});
+      d[0] = "Row " + i;
+	  d[1] = i + " Garys";
+	  d[2] = "Is";
+	  if (i == 0) {
+		d[3] = "No";
+	  }else if (i == 1) {
+		d[3] = "Lots Of";
+	  } else {
+		d[3] = "More";
+	  }
+	  d[4] = "Fun";
+    }
+
+    var checkboxSelector = new Slick.CheckboxSelectColumn({
+      cssClass: "slick-cell-checkboxsel"
+    });
+
+    columns.push(checkboxSelector.getColumnDefinition());
+
+    for (var i = 0; i < 5; i++) {
+      columns.push({
+        id: i,
+        name: String.fromCharCode("A".charCodeAt(0) + i),
+        field: i,
+        width: 100,
+        editor: Slick.Editors.Text
+      });
+    }
+
+    grid = new Slick.Grid("#myGrid", data, columns, options);
+    grid.setSelectionModel(new Slick.RowSelectionModel({selectActiveRow: false}));
+    grid.registerPlugin(checkboxSelector);
+  })
+</script>
+</body>
+</html>

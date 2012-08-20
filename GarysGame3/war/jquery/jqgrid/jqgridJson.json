@@ -1,0 +1,16 @@
+{
+ "total":2,"page":1,"records":6,"rows":[
+  {"id":"B1B","display":"B1B","action":[{"display":"REMOVE","url":"/B1B/remove","validateUrl":null,"ajax":true,"gridParent":"jqRangeGrid"}]},
+  {"id":"B2B","display":"B2B","action":[{"display":"REMOVE","url":"/B2B/remove","validateUrl":null,"ajax":true,"gridParent":"jqRangeGrid"}]},
+  {"id":"B3B","display":"B3B","action":[{"display":"REMOVE","url":"/B3B/remove","validateUrl":null,"ajax":true,"gridParent":"jqRangeGrid"}]}, 
+  {"id":"B4B","display":"B4B","action":[{"display":"REMOVE","url":"/B4B/remove","validateUrl":null,"ajax":true,"gridParent":"jqRangeGrid"}]},
+  {"id":"B5B","display":"B5B","action":[{"display":"REMOVE","url":"/B5B/remove","validateUrl":null,"ajax":true,"gridParent":"jqRangeGrid"}]},
+  {"id":"B6B","display":"B6B","action":[{"display":"REMOVE","url":"/B6B/remove","validateUrl":null,"ajax":true,"gridParent":"jqRangeGrid"}]},
+  {"id":"B7B","display":"B7B","action":[{"display":"REMOVE","url":"/B7B/remove","validateUrl":null,"ajax":true,"gridParent":"jqRangeGrid"}]},
+  {"id":"B8B","display":"B8B","action":[{"display":"REMOVE","url":"/B8B/remove","validateUrl":null,"ajax":true,"gridParent":"jqRangeGrid"}]},
+  {"id":"B9B","display":"B9B","action":[{"display":"REMOVE","url":"/B9B/remove","validateUrl":null,"ajax":true,"gridParent":"jqRangeGrid"}]},
+  {"id":"B10B","display":"B10B","action":[{"display":"REMOVE","url":"/B10B/remove","validateUrl":null,"ajax":true,"gridParent":"jqRangeGrid"}]},
+  {"id":"B11B","display":"B11B","action":[{"display":"REMOVE","url":"/B11B/remove","validateUrl":null,"ajax":true,"gridParent":"jqRangeGrid"}]},
+  {"id":"B12B","display":"B12B","action":[{"display":"REMOVE","url":"/B12B/remove","validateUrl":null,"ajax":true,"gridParent":"jqRangeGrid"}]}      
+ ]
+}

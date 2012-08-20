@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/themes/redmond/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="jquery/jqgrid/js/ui.jqgrid.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="jquery/jqgrid/js/ui.multiselect.css" />
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+<script type="text/javascript" src="jquery/jqgrid/js/grid.locale-en.js"></script>
+<script type="text/javascript" src="jquery/jqgrid/js/jquery.jqGrid.min.js"></script>
+<script type="text/javascript" src="jquery/jquery_local.js"></script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Gary's jqGrid Example</title>
+</head>
+<body>
+<script type="text/javascript">
+function populateApplicabilityRangeGrid(gridUrl){
+
+    $("#jqRangeGrid").html("<table id=\"gridrangelist\"></table><div id=\"gridrangepage\"></div>");
+
+    jQuery("#gridrangelist").jqGrid({
+        url:gridUrl,
+        datatype: "json",
+        height:250,
+        width:490,
+        colNames:['Number','Action'],
+        colModel:[
+            {name:'display',index:'display', sortable:true},
+            {name:'action',index:'action', sortable:false, formatter:hyperLink}
+        ],
+
+        multiselect: false,
+        paging: false,
+        rowNum:10,
+        rowList:[5,10,50,100],
+        pager: $("#gridrangepage"),
+        loadonce:false,
+        caption: "Applicability Numbers",
+        emptyrecords: "Nothing to display",
+        viewrecords:true,
+        gridComplete: function(){$("#gridrangelist").jqGrid('setGridParam',{datatype:'json'}); },
+        
+        jsonReader: {
+        	root: "rows",
+        	repeatitems: false,
+        	page: function(obj) {
+    			if (obj) {
+    				return obj.page;
+    			}
+    			return 0;
+        	}, 
+            total: function(obj) { 
+            	if (obj) {
+            		return obj.total;
+            	}
+            	return 0;
+            } 
+        }
+
+    }).navGrid('#gridrangepage',{edit:false,add:false,del:false,search:false});
+}
+</script>
+
+<div id="jqRangeGrid"></div>
+<script type="text/javascript">
+$(function(){
+	//populateApplicabilityRangeGrid("${applicability_json}");
+	var elem = $('#${gridComponentParentId}');
+	var columnNames = elem.data('columnNames');
+	var columnRows = elem.data('columnRows');
+	populateGrid("${url}" + "?gridComponentParentId=${gridId}", "${gridId}", "${title}", columnNames, columnRows);
+	});
+</script>
+</body>
+</html>

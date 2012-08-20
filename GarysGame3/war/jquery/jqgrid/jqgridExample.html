@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+
+<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/themes/redmond/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="ui.jqgrid.css" />
+<!-- <link rel="stylesheet" type="text/css" media="screen" href="ui.multiselect.css" /> -->
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+<script type="text/javascript" src="grid.locale-en.js"></script>
+<script type="text/javascript" src="jquery.jqGrid.min.js"></script>
+<script type="text/javascript" src="reusable_jqgrid.js"></script>
+<script type="text/javascript" src="../jquery_local.js"></script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Gary's jqGrid Example</title>
+</head>
+<body>
+<!-- <h1>If this is all you see, something broke :(</h1> -->
+<div id="jqRangeGrid"></div>
+<table id="jqRangeGrid_gridlist"></table><div id="jqRangeGrid_gridpage"></div>
+
+<script type="text/javascript">
+
+$(function(){
+	//populateApplicabilityRangeGrid("${applicability_json}");
+	var gridComponentParentId = 'jqRangeGrid';
+	
+	var elem = $('#'+gridComponentParentId);
+	var columnNames = ["Number","Action"];
+	elem.data('columnNames', columnNames);
+	var columnRows = [];
+	elem.data('columnRows', columnRows);
+	
+	var title = "Gary Rocks";
+	var url = "jqgridJson.json";
+	//var url = "../../jqgridJson.json";
+	//var url = "jquery/jqgrid/jqgridJson.json";
+
+	columnNames = elem.data('columnNames');
+	columnRows = elem.data('columnRows');
+
+	columnRows.push(populateRows("display", "70%", false));
+	columnRows.push(populateRows("action", "30%", false));
+
+	
+	//url += "?gridComponentParentId='";
+	populateGrid(url, gridComponentParentId, title, columnNames, columnRows);
+    
+    //populateRowsFromLocal(gridComponentParentId);
+	});
+</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+# Lines that start with '#' are comments.
+# Ignore all dotfiles...
+.*
+*.class
+*.war
+*.cache.*
+*cache*
+/war/garysgame3/*
+/war/WEB-INF/*
+# except for .gitignore
+!.gitignore
